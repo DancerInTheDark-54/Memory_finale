@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="ru-RU">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Тест</title>
+<style>
+body
+{
+	font-family:verdana;
+	color:#C0C0C0;
+}
+#option1,#option2,#option3,#option4{
+	display:none;
+	margin-bottom: 10px;
+}
+.oganesyan{
+    text-decoration: none;
+    font-size: 20px;
+    margin-right: 20px;
+    color: #C0C0C0;
+    background: #4B0082;
+    padding: 4px 8px;
+	border: 0;
+	cursor: pointer;
+
+}
+</style>
+<script type="text/javascript">
+
+	//Массив вопросов и ответа
+	var data_array = [
+	  ["Как называется метод, который преобразует все элементы массива в строки, объединяет их и возвращает получившуюся строку?",
+	  "add()","execute()","goString()","join()",4],
+	  ["Как называется метод меняющий порядок следования элементов в массиве на обратный и возвращающий переупорядоченный массив?",
+	  "fallinginreverse()","soad()","reverse()","buyaponyticket()",3],
+	  ["Какую функцию выполняет метод array.sort() в массиве?"
+	  ,"Выбирает элементы массива","Аранжирует","Делит массив пополам","Сортирует элементы в исходном массиве и возвращает отсортированный массив",4],
+	  ["Методы push() и pop() позволяют....","Работать с массивами как со стеками","телепортироваться на пару Системного Программирования","Толкаться и нести ерунду","Сделать стек",1],
+	  ["Массив - это ...","стек","упорядоченная коллекция значений","сборка коллекций","таблица",2],
+	  ["Массивы в JavaScript являются","Ничем","Нестабилизированными","Нетипизированными","Неструктурированнымы",3],
+	  ["Оператор, осуществляющий достпук к элементу массива...","?}","{}","[]","=[]",3],
+	  ["Как называется числовая позиция элемента массива?","Индекс","Степень","Номер","Вектор",1],
+	  ["Как можно создать массив?","Литерал и Array(n)","Литерал и Константа","Array() и array:1..n","Obj[]",1],
+	  ["Что делает метод concat()?","Cоздает и возвращает новый массив, содержащий элементы исходного массива","Размножает элементы массива","Складывает два массива в один","Тоже, что и cutOf()",1],
+	  ["Что делает метод slice()?","Тоже, что и spice()","Вызывает рак","Удаляет элемент массива","Возвращает фрагмент, или подмассив, указанного массива",4],
+	  ["Что делает метод splice()?","Выполняет вставку или удаление элементов массива","Режет массив","Создает в массиве подмассив","Удаляет массив",1]
+	];
+
+	var plus = 0;
+	var time = 0;
+	var cur_answer = 0;
+	var count_answer = data_array.length;
+	
+	function sec() {
+		time++;	
+		document.getElementById('time').innerHTML='Затрачено времени: ' + time + ' сек';
+	}
+	
+	function check(num){
+
+		if(num == 0){ 
+		
+			document.getElementById('option1').style.display='block';
+			document.getElementById('option2').style.display='block';
+			document.getElementById('option3').style.display='block';
+			document.getElementById('option4').style.display='block';
+			document.getElementById('question').style.display='block';
+
+			document.getElementById('option1').innerHTML=data_array[cur_answer][1];
+			document.getElementById('option2').innerHTML=data_array[cur_answer][2];
+			document.getElementById('option3').innerHTML=data_array[cur_answer][3];
+			document.getElementById('option4').innerHTML=data_array[cur_answer][4];
+			document.getElementById('question').innerHTML=data_array[cur_answer][0];
+			
+			document.getElementById('start').style.display='none';
+			document.getElementById('end').style.display='inline';
+			
+			var intervalID = setInterval(sec, 1000);
+			
+		}else{
+
+			if( num ==  data_array[cur_answer][5]){
+				plus++;
+				document.getElementById('result').innerHTML='Верно!';
+			}else{
+				document.getElementById('result').innerHTML="Неверно! Правильный ответ: " + data_array[cur_answer][data_array[cur_answer][5]];
+			}
+				
+			cur_answer++;
+			if(cur_answer < count_answer){
+			
+				document.getElementById('option1').innerHTML=data_array[cur_answer][1];
+				document.getElementById('option2').innerHTML=data_array[cur_answer][2];
+				document.getElementById('option3').innerHTML=data_array[cur_answer][3];
+				document.getElementById('option4').innerHTML=data_array[cur_answer][4];
+				document.getElementById('question').innerHTML=data_array[cur_answer][0];
+				
+			}else{
+				
+				document.getElementById('time').id = 'stop';
+				document.getElementById('option1').style.display='none';
+				document.getElementById('option2').style.display='none';
+				document.getElementById('option3').style.display='none';
+				document.getElementById('option4').style.display='none';
+				document.getElementById('question').style.display='none';
+				document.getElementById('end').style.display='inline';
+				
+				var percent =  Math.round(plus/count_answer*100);				
+				var res = 'Плохо!';
+				if(percent>70) res = 'Хорошо!';
+				if(percent==100) res = 'Отлично!';
+				
+				document.getElementById('result').innerHTML='Правильных ответов: ' + plus + ' из ' + count_answer + ' (' + percent + '%)<br>' + res;
+			}
+		}
+	}
+</script>
+</head>
+<body bgcolor="#696969">
+	<center>			
+		<p style="font-size: 38px;font-weight: bold;padding-top: 2px;" id="time">Затрачено времени: 0 сек</p>
+		<p style="font-size: 38px;font-weight: bold;padding-top: 2px;" id="result"></p>
+					
+		<p style="font-size: 38px;font-weight: bold;padding-top: 2px;" id="question"></p>
+		
+		<button onclick="check(1)" class="oganesyan" id="option1"></button>
+		
+		<button onclick="check(2)" class="oganesyan" id="option2"></button>
+		
+		<button onclick="check(3)" class="oganesyan" id="option3"></button>
+		
+		<button onclick="check(4)" class="oganesyan" id="option4"></button>
+	</center><br>
+	<center>
+		<button id="start" class="oganesyan" onclick="check(0)">Приступить к тесту</button>
+		<script type="text/javascript"> var curent_url = document.URL; document.write("<a id='end' style='display: none;' class='oganesyan' href='" + curent_url + "'>Начать сначала</a>"); </script>	
+	</center><br><br>
+	<div><a href="JSARRAY.html"><====</a></div>
+</body>
+</html>

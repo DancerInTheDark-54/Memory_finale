@@ -1,0 +1,49 @@
+body
+{background-color:#696969 ;
+border: 20px solid #4B0082;}
+.start
+{color:#C0C0C0;
+text-align:center;
+font-size:80px;
+width:500px;
+position: relative;
+bottom:40%;
+right:30%;
+left:31.5%;
+top:10%;}
+.start2
+{text-align:center;
+font-size:30px;
+font-family:serif;
+width:500px;
+position: relative;
+bottom:40%;
+right:30%;
+left:31.5%;
+top:20%;}
+header
+{font-style:italic;
+font-size:20px;
+margin:4px;
+color:#C0C0C0;}
+footer
+{
+margin:1px;
+font-size:20px;
+color:#C0C0C0;}
+section
+{ color:#C0C0C0;
+margin:3px;
+column-count: 2;
+font-size:18px;}
+a:link{text-decoration: none;
+ color:#C0C0C0;}
+a:visited{color:#708090;}
+a:active{color:red;}
+a:hover{text-decoration:underline overline;}
+.pravui
+{text-align:right;}
+
+
+
+
